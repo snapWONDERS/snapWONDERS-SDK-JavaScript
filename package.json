@@ -1,0 +1,59 @@
+{
+  "name": "@snapwonders/sdk",
+  "version": "0.1.1",
+  "description": "Official JavaScript / TypeScript SDK for the snapWONDERS API — steganography (hide & reveal), forensic media analysis, and format conversion.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsx test/smoke.test.ts"
+  },
+  "keywords": [
+    "steganography",
+    "hide-and-reveal",
+    "forensics",
+    "image-forensics",
+    "media-analysis",
+    "api-client",
+    "mcp",
+    "snapwonders",
+    "vaultify",
+    "typescript",
+    "nodejs",
+    "c2pa",
+    "content-credentials",
+    "ai-image-detection",
+    "image-conversion",
+    "watermark-detection"
+  ],
+  "author": "Kenneth Springer @ snapWONDERS <kenneth@snapwonders.com> (https://kennethbspringer.au)",
+  "license": "MIT",
+  "homepage": "https://snapwonders.com/developers#sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snapWONDERS/snapWONDERS-SDK-JavaScript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snapWONDERS/snapWONDERS-SDK-JavaScript/issues"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0"
+  }
+}
