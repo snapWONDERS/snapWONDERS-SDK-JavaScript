@@ -1,0 +1,43 @@
+name: CI
+
+# Runs on the standalone snapWONDERS-SDK-JavaScript repo (this file becomes .github/workflows/ci.yml there
+# after `git subtree split`). Offline tests need no API key.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test — Node ${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ["18.x", "20.x", "22.x"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - name: Type-check
+        run: npm run typecheck
+      - name: Offline test suite
+        run: npm test
+
+  build:
+    name: Build distribution
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+      - run: npm ci
+      - run: npm run build
+      - name: Verify publishable contents
+        run: npm pack --dry-run
